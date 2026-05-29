@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>@ericageorgis — Instagram Grid Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0F0F0F;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:60px 0 100px;
+  font-family:'Jost',sans-serif;
+}
+
+/* Page header */
+.page-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:48px;
+  gap:8px;
+}
+.page-header .handle{
+  color:rgba(245,242,237,0.9);
+  font-weight:300;
+  font-size:22px;
+  letter-spacing:0.12em;
+}
+.page-header .subtitle{
+  color:rgba(245,242,237,0.35);
+  font-weight:200;
+  font-size:13px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+}
+
+/* Phone frame */
+.phone{
+  width:414px;
+  background:#000;
+  border-radius:44px;
+  padding:14px;
+  box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.08);
+  position:relative;
+}
+
+/* Screen area */
+.screen{
+  background:#FAFAF8;
+  border-radius:34px;
+  overflow:hidden;
+}
+
+/* Instagram top bar */
+.ig-bar{
+  background:#FAFAF8;
+  padding:14px 16px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+.ig-name{
+  font-weight:400;
+  font-size:14px;
+  color:#0A0A0A;
+  letter-spacing:0.01em;
+}
+.ig-actions{display:flex;gap:14px}
+.ig-icon{
+  width:20px;height:20px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Profile section */
+.profile{
+  padding:16px 16px 0;
+  background:#FAFAF8;
+}
+.profile-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:14px;
+}
+.avatar{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,#2A2A2A,#1A1A1A);
+  border:2px solid transparent;
+  box-shadow:0 0 0 2px #E8E8E8, 0 0 0 3px #FAFAF8;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:18px;
+  letter-spacing:0.05em;
+  flex-shrink:0;
+}
+.stats{
+  display:flex;
+  flex:1;
+  justify-content:space-around;
+  text-align:center;
+}
+.stat-num{font-weight:600;font-size:15px;color:#0A0A0A;display:block}
+.stat-label{font-size:11px;color:#6B6B6B;font-weight:300}
+.profile-name{font-weight:600;font-size:13px;color:#0A0A0A;margin-bottom:2px}
+.profile-bio{font-size:12px;color:#262626;line-height:1.4;margin-bottom:12px}
+.profile-link{font-size:12px;color:#00376B;margin-bottom:14px}
+.btn-edit{
+  display:block;
+  text-align:center;
+  background:#EFEFEF;
+  border-radius:6px;
+  padding:7px;
+  font-size:13px;
+  font-weight:600;
+  color:#0A0A0A;
+  margin-bottom:14px;
+}
+.highlights{
+  display:flex;gap:12px;padding:6px 0 16px;
+  overflow-x:auto;
+}
+.highlight-ring{
+  display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;
+}
+.highlight-ring .ring{
+  width:54px;height:54px;border-radius:50%;
+  border:2px solid #DBDBDB;
+  display:flex;align-items:center;justify-content:center;
+}
+.highlight-ring .ring svg{opacity:0.35}
+.highlight-label{font-size:10px;color:#262626}
+
+/* Tab nav */
+.tab-nav{
+  display:flex;
+  border-top:1px solid rgba(0,0,0,0.1);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  background:#FAFAF8;
+}
+.tab{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:10px;
+}
+.tab.active{border-bottom:2px solid #0A0A0A;margin-bottom:-1px}
+
+/* The grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:#DBDBDB;
+}
+
+/* Each tile wrapper: shows 1080px iframe scaled to 130px */
+.tile{
+  width:130px;
+  height:130px;
+  overflow:hidden;
+  position:relative;
+  background:#F0EEEA;
+  cursor:pointer;
+}
+.tile:hover .tile-hover{opacity:1}
+.tile-hover{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.25);
+  opacity:0;
+  transition:opacity 0.15s;
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;
+}
+.tile-hover span{
+  font-size:8px;letter-spacing:0.15em;text-transform:uppercase;
+  color:#fff;font-weight:300;
+}
+iframe.tile-frame{
+  width:1080px;
+  height:1080px;
+  transform:scale(0.12037);
+  transform-origin:top left;
+  border:none;
+  pointer-events:none;
+}
+
+/* Upload guide section */
+.guide{
+  margin-top:48px;
+  width:414px;
+  color:rgba(245,242,237,0.85);
+}
+.guide h2{
+  font-size:13px;letter-spacing:0.35em;text-transform:uppercase;
+  color:rgba(245,242,237,0.4);font-weight:200;margin-bottom:24px;
+  padding-bottom:12px;border-bottom:1px solid rgba(245,242,237,0.08);
+}
+.guide-row{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(245,242,237,0.06);
+  font-size:12px;
+  line-height:1.5;
+}
+.guide-num{
+  width:20px;height:20px;
+  border:1px solid rgba(245,242,237,0.2);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:300;
+  color:rgba(245,242,237,0.4);
+  flex-shrink:0;
+  margin-top:1px;
+}
+.guide-file{
+  font-weight:300;letter-spacing:0.05em;
+  color:rgba(245,242,237,0.8);
+}
+.guide-desc{
+  font-weight:200;
+  color:rgba(245,242,237,0.4);
+  font-size:11px;
+  margin-top:2px;
+}
+.guide-link{
+  margin-left:auto;
+  font-size:11px;letter-spacing:0.08em;
+  color:rgba(245,242,237,0.25);
+  white-space:nowrap;
+  text-decoration:none;
+  padding:2px 8px;
+  border:1px solid rgba(245,242,237,0.1);
+  border-radius:3px;
+}
+.guide-link:hover{color:rgba(245,242,237,0.6);border-color:rgba(245,242,237,0.25)}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="handle">@ericageorgis</div>
+  <div class="subtitle">Instagram Grid Preview · 12 tiles</div>
+</div>
+
+<!-- Phone mockup -->
+<div class="phone">
+  <div class="screen">
+
+    <!-- Instagram top bar -->
+    <div class="ig-bar">
+      <div class="ig-name">ericageorgis</div>
+      <div class="ig-actions">
+        <div class="ig-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </div>
+        <div class="ig-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile">
+      <div class="profile-top">
+        <div class="avatar">EG</div>
+        <div class="stats">
+          <div><span class="stat-num">12</span><span class="stat-label">posts</span></div>
+          <div><span class="stat-num">—</span><span class="stat-label">followers</span></div>
+          <div><span class="stat-num">—</span><span class="stat-label">following</span></div>
+        </div>
+      </div>
+      <div class="profile-name">Erica Georgis</div>
+      <div class="profile-bio">Interior Design · Sydney<br>Full-scope residential &amp; bespoke spaces.</div>
+      <div class="profile-link">ericageorgis.com.au</div>
+      <div class="btn-edit">Edit profile</div>
+
+      <!-- Story highlights -->
+      <div class="highlights">
+        <div class="highlight-ring">
+          <div class="ring">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+          <span class="highlight-label">New</span>
+        </div>
+        <div class="highlight-ring">
+          <div class="ring"></div>
+          <span class="highlight-label">Projects</span>
+        </div>
+        <div class="highlight-ring">
+          <div class="ring"></div>
+          <span class="highlight-label">Process</span>
+        </div>
+        <div class="highlight-ring">
+          <div class="ring"></div>
+          <span class="highlight-label">Materials</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab nav -->
+    <div class="tab-nav">
+      <div class="tab active">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A0A0A">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <div class="tab">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DBDBDB" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="2"/>
+          <path d="M9 2v20M15 2v20M2 9h20M2 15h20"/>
+        </svg>
+      </div>
+      <div class="tab">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DBDBDB" stroke-width="1.5">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M16.95 7.05a7 7 0 1 0 0 9.9"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- The Instagram Grid -->
+    <div class="grid">
+
+      <!-- Row 1: Logo | Pano-Interior-L | Pano-Interior-R -->
+      <div class="tile" onclick="window.open('tiles/t01.html','_blank')" title="T01 — Brand logo · open full size">
+        <iframe class="tile-frame" src="tiles/t01.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Open full size</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t02.html','_blank')" title="T02 — Interior panoramic left">
+        <iframe class="tile-frame" src="tiles/t02.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Pano left</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t03.html','_blank')" title="T03 — Interior panoramic right">
+        <iframe class="tile-frame" src="tiles/t03.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Pano right</span></div>
+      </div>
+
+      <!-- Row 2: Bathroom | Quote | Staircase -->
+      <div class="tile" onclick="window.open('tiles/t04.html','_blank')" title="T04 — Bathroom">
+        <iframe class="tile-frame" src="tiles/t04.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Bathroom</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t05.html','_blank')" title="T05 — Quote">
+        <iframe class="tile-frame" src="tiles/t05.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Quote</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t06.html','_blank')" title="T06 — Staircase">
+        <iframe class="tile-frame" src="tiles/t06.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Staircase</span></div>
+      </div>
+
+      <!-- Row 3: Pano-Facade-L | Pano-Facade-R | Manifesto -->
+      <div class="tile" onclick="window.open('tiles/t07.html','_blank')" title="T07 — Facade panoramic left">
+        <iframe class="tile-frame" src="tiles/t07.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Pano left</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t08.html','_blank')" title="T08 — Facade panoramic right">
+        <iframe class="tile-frame" src="tiles/t08.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Pano right</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t09.html','_blank')" title="T09 — Manifesto">
+        <iframe class="tile-frame" src="tiles/t09.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Manifesto</span></div>
+      </div>
+
+      <!-- Row 4: Marble | Services | Contact -->
+      <div class="tile" onclick="window.open('tiles/t10.html','_blank')" title="T10 — Marble detail">
+        <iframe class="tile-frame" src="tiles/t10.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Marble</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t11.html','_blank')" title="T11 — Services">
+        <iframe class="tile-frame" src="tiles/t11.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Services</span></div>
+      </div>
+      <div class="tile" onclick="window.open('tiles/t12.html','_blank')" title="T12 — Contact CTA">
+        <iframe class="tile-frame" src="tiles/t12.html" loading="lazy"></iframe>
+        <div class="tile-hover"><span>Contact</span></div>
+      </div>
+
+    </div>
+  </div><!-- /screen -->
+</div><!-- /phone -->
+
+<!-- Upload sequence guide -->
+<div class="guide">
+  <h2>Upload sequence — oldest first</h2>
+  <div class="guide-row">
+    <div class="guide-num">1</div>
+    <div>
+      <div class="guide-file">t12.html → Contact "Begin your project"</div>
+      <div class="guide-desc">Upload first. Appears bottom-right of grid.</div>
+    </div>
+    <a class="guide-link" href="tiles/t12.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">2</div>
+    <div>
+      <div class="guide-file">t11.html → Full Service Design (services)</div>
+      <div class="guide-desc">Bottom centre</div>
+    </div>
+    <a class="guide-link" href="tiles/t11.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">3</div>
+    <div>
+      <div class="guide-file">t10.html → Verde Onyx marble detail</div>
+      <div class="guide-desc">Needs: images/marble.jpg</div>
+    </div>
+    <a class="guide-link" href="tiles/t10.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">4</div>
+    <div>
+      <div class="guide-file">t09.html → Manifesto "We don't decorate rooms"</div>
+      <div class="guide-desc">Lower right — the brand statement</div>
+    </div>
+    <a class="guide-link" href="tiles/t09.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">5</div>
+    <div>
+      <div class="guide-file">t08.html → Facade panoramic RIGHT half</div>
+      <div class="guide-desc">Needs: images/facade.jpg (right 50%)</div>
+    </div>
+    <a class="guide-link" href="tiles/t08.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">6</div>
+    <div>
+      <div class="guide-file">t07.html → Facade panoramic LEFT half</div>
+      <div class="guide-desc">Needs: images/facade.jpg (left 50%) — upload immediately after t08</div>
+    </div>
+    <a class="guide-link" href="tiles/t07.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">7</div>
+    <div>
+      <div class="guide-file">t06.html → Sculptural staircase aerial</div>
+      <div class="guide-desc">Needs: images/staircase.jpg</div>
+    </div>
+    <a class="guide-link" href="tiles/t06.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">8</div>
+    <div>
+      <div class="guide-file">t05.html → Quote "Finest spaces felt before seen"</div>
+      <div class="guide-desc">Dark tile — visual pause in grid</div>
+    </div>
+    <a class="guide-link" href="tiles/t05.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">9</div>
+    <div>
+      <div class="guide-file">t04.html → Master ensuite bathroom</div>
+      <div class="guide-desc">Needs: images/bathroom.jpg</div>
+    </div>
+    <a class="guide-link" href="tiles/t04.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">10</div>
+    <div>
+      <div class="guide-file">t03.html → Interior panoramic RIGHT half</div>
+      <div class="guide-desc">Needs: images/interior-wide.jpg (right 50%)</div>
+    </div>
+    <a class="guide-link" href="tiles/t03.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">11</div>
+    <div>
+      <div class="guide-file">t02.html → Interior panoramic LEFT half</div>
+      <div class="guide-desc">Needs: images/interior-wide.jpg (left 50%) — upload immediately after t03</div>
+    </div>
+    <a class="guide-link" href="tiles/t02.html" target="_blank">Preview</a>
+  </div>
+  <div class="guide-row">
+    <div class="guide-num">12</div>
+    <div>
+      <div class="guide-file">t01.html → Brand logo tile — ERICA Georgis</div>
+      <div class="guide-desc">Upload last. Appears top-left. This is your hero tile.</div>
+    </div>
+    <a class="guide-link" href="tiles/t01.html" target="_blank">Preview</a>
+  </div>
+</div>
+
+</body>
+</html>
