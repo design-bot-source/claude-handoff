@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>T02 — Interior Panoramic · Left</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden}
+body{position:relative;overflow:hidden}
+
+/*
+  IMAGE: interior-wide.jpg
+  Save your wide interior-through-doors shot as: instagram/images/interior-wide.jpg
+  This tile shows the LEFT half of that image.
+*/
+.bg{
+  position:absolute;
+  inset:0;
+  background-image: url('../images/interior-wide.jpg');
+  background-size:200% auto;
+  background-position:0% center;
+  background-repeat:no-repeat;
+  /* Fallback gradient if no image: */
+  background-color:#EDE8E0;
+}
+
+/* Placeholder shown when image is missing */
+.ph{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  background:linear-gradient(135deg,#EDE8E0,#D8D0C4);
+}
+.ph-frame{
+  width:80px;height:80px;
+  border:1px dashed rgba(26,26,26,0.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.ph-label{
+  font-family:'Jost',sans-serif;font-weight:200;
+  font-size:14px;letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(26,26,26,0.4);text-align:center;line-height:1.8;
+}
+
+/* Caption — bottom left */
+.caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:100px 72px 68px;
+  background:linear-gradient(to top,rgba(10,10,10,0.55) 0%,transparent 100%);
+}
+.cap-label{
+  font-family:'Jost',sans-serif;font-weight:200;
+  font-size:14px;letter-spacing:0.38em;text-transform:uppercase;
+  color:rgba(250,250,248,0.6);margin-bottom:14px;
+}
+.cap-title{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:54px;letter-spacing:0.04em;line-height:1.08;
+  color:#FAFAF8;
+}
+.cap-title em{font-style:italic}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="ph">
+    <div class="ph-frame">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,26,0.35)" stroke-width="1">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+    </div>
+    <div class="ph-label">Save as: images/interior-wide.jpg<br>This tile = LEFT half of that image</div>
+  </div>
+  <div class="caption">
+    <div class="cap-label">Featured Project</div>
+    <div class="cap-title">Point Piper<br><em>Residence</em></div>
+  </div>
+</body>
+</html>
