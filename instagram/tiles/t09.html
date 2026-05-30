@@ -2,104 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>T09 — Manifesto</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>09 — Manifesto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1080px;overflow:hidden}
-body{
-  background:#1A1A1A;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:80px 88px 96px;
-  font-family:'Cormorant Garamond',Georgia,serif;
-  color:#F5F2ED;
-  position:relative;
-}
-
-/* Vertical rule — left margin accent */
-.v-rule{
-  position:absolute;
-  left:52px;top:52px;bottom:52px;
-  width:1px;
-  background:rgba(245,242,237,0.12);
-}
-
-/* Top mark */
-.top-mark{
-  position:absolute;
-  top:88px;right:88px;
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:12px;
-  letter-spacing:0.4em;
-  text-transform:uppercase;
-  color:rgba(245,242,237,0.3);
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:#1A1A1A}
+body{display:flex;flex-direction:column;justify-content:flex-end;padding:80px 88px 96px;font-family:'Cormorant Garamond',Georgia,serif;color:#F5F2ED;position:relative}
+.v-rule{position:absolute;left:52px;top:52px;bottom:52px;width:1px;background:rgba(196,169,122,0.25)}
+.top-mark{position:absolute;top:88px;right:88px;font-family:'Jost',sans-serif;font-weight:200;font-size:12px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(245,242,237,0.3)}
 .content{max-width:860px}
-
-.intro{
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:14px;
-  letter-spacing:0.38em;
-  text-transform:uppercase;
-  color:rgba(245,242,237,0.4);
-  margin-bottom:40px;
-}
-.headline{
-  font-weight:300;
-  font-size:96px;
-  line-height:0.95;
-  letter-spacing:-0.01em;
-  color:#F5F2ED;
-  margin-bottom:4px;
-}
-.headline-2{
-  font-style:italic;
-  font-weight:300;
-  font-size:96px;
-  line-height:0.95;
-  letter-spacing:0.01em;
-  color:#F5F2ED;
-  margin-bottom:4px;
-}
-.headline-3{
-  font-weight:300;
-  font-size:96px;
-  line-height:0.95;
-  letter-spacing:-0.01em;
-  color:#F5F2ED;
-  margin-bottom:52px;
-}
-.rule{
-  width:44px;height:1px;
-  background:rgba(245,242,237,0.3);
-  margin-bottom:36px;
-}
-.sub{
-  font-style:italic;
-  font-weight:300;
-  font-size:30px;
-  line-height:1.4;
-  color:rgba(245,242,237,0.55);
-  letter-spacing:0.01em;
-}
+.intro{font-family:'Jost',sans-serif;font-weight:200;font-size:14px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(245,242,237,0.4);margin-bottom:40px}
+.h{font-weight:300;font-size:96px;line-height:0.95;letter-spacing:-0.01em;color:#F5F2ED;margin-bottom:4px}
+.h.it{font-style:italic;letter-spacing:0.01em}
+.h.last{margin-bottom:52px}
+.rule{width:44px;height:1px;background:rgba(196,169,122,0.6);margin-bottom:40px}
+.sub{font-style:italic;font-weight:300;font-size:33px;line-height:1.45;color:rgba(245,242,237,0.7);letter-spacing:0.01em}
 </style>
 </head>
 <body>
-  <div class="v-rule"></div>
-  <div class="top-mark">Philosophy</div>
-  <div class="content">
-    <div class="intro">We believe</div>
-    <div class="headline">We don't</div>
-    <div class="headline-2">decorate</div>
-    <div class="headline-3">rooms.</div>
-    <div class="rule"></div>
-    <div class="sub">We design the life<br>that unfolds within them.</div>
-  </div>
+<div class="v-rule"></div>
+<div class="top-mark">Philosophy</div>
+<div class="content">
+  <div class="h">Good design</div>
+  <div class="h it">is felt,</div>
+  <div class="h last">not seen.</div>
+  <div class="rule"></div>
+  <div class="sub">Before the eye settles —<br>the room speaks.</div>
+</div>
+<script>!function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();</script>
 </body>
 </html>
