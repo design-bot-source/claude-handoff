@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>07 — Facade Pano Left</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;position:relative}
+.bg{position:absolute;inset:0;z-index:1;background:#E8E8E6 url('../images/facade.jpg') left center/200% auto no-repeat;filter:brightness(0.88) contrast(1.08) saturate(0.88)}
+.filter{position:absolute;inset:0;z-index:2;background:rgba(10,8,6,0.18);pointer-events:none}
+.caption{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:120px 72px 72px;background:linear-gradient(to top,rgba(6,5,4,0.65) 0%,transparent 100%)}
+.cap-label{font-family:'Jost',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(250,250,248,0.55);margin-bottom:14px}
+.cap-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:56px;letter-spacing:0.04em;line-height:1.08;color:#FAFAF8}
+.cap-title em{font-style:italic}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<div class="filter"></div>
+<div class="caption">
+  <div class="cap-label">Exterior</div>
+  <div class="cap-title">Mosman<br><em>Residence</em></div>
+</div>
+<script>
+var KEY='facade';
+function setImg(src){document.getElementById('bg').style.backgroundImage='url('+src+')';}
+try{var s=localStorage.getItem('eg_'+KEY);if(s)setImg(s);}catch(e){}
+window.addEventListener('message',function(e){if(e.data&&e.data.key===KEY&&e.data.src)setImg(e.data.src);});
+!function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();
+</script>
+</body>
+</html>

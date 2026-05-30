@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>@ericageorgis — Caption Copy & Image Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0F0F0F;
+  color:#F5F2ED;
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  padding:64px 0 100px;
+  line-height:1.7;
+}
+.wrap{max-width:740px;margin:0 auto;padding:0 32px}
+h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;
+  letter-spacing:0.03em;color:#F5F2ED;margin-bottom:8px;
+}
+h1 em{font-style:italic}
+.subtitle{
+  font-size:12px;letter-spacing:0.4em;text-transform:uppercase;
+  color:rgba(245,242,237,0.35);margin-bottom:64px;
+}
+.section-rule{
+  width:100%;height:1px;background:rgba(245,242,237,0.08);margin:0 0 48px;
+}
+.post{
+  margin-bottom:64px;
+  padding-bottom:64px;
+  border-bottom:1px solid rgba(245,242,237,0.07);
+}
+.post-header{
+  display:flex;align-items:flex-start;gap:20px;margin-bottom:28px;
+}
+.post-num{
+  width:32px;height:32px;
+  border:1px solid rgba(245,242,237,0.18);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;letter-spacing:0.1em;
+  color:rgba(245,242,237,0.4);
+  flex-shrink:0;margin-top:2px;
+}
+.post-meta{}
+.post-tile{
+  font-size:12px;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(245,242,237,0.35);margin-bottom:4px;
+}
+.post-title{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;
+  letter-spacing:0.03em;color:#F5F2ED;
+}
+.post-title em{font-style:italic}
+
+.field-label{
+  font-size:11px;letter-spacing:0.38em;text-transform:uppercase;
+  color:rgba(245,242,237,0.3);margin-bottom:10px;
+}
+.caption-box{
+  background:rgba(245,242,237,0.04);
+  border:1px solid rgba(245,242,237,0.08);
+  border-radius:6px;
+  padding:24px;
+  margin-bottom:24px;
+  white-space:pre-wrap;
+  font-size:14px;
+  line-height:1.75;
+  color:rgba(245,242,237,0.8);
+  cursor:pointer;
+  transition:border-color 0.2s;
+}
+.caption-box:hover{border-color:rgba(245,242,237,0.2)}
+.caption-box:active{background:rgba(245,242,237,0.07)}
+.copy-hint{font-size:11px;color:rgba(245,242,237,0.2);margin-bottom:28px;letter-spacing:0.15em}
+.hashtags-box{
+  background:rgba(245,242,237,0.03);
+  border:1px solid rgba(245,242,237,0.06);
+  border-radius:6px;
+  padding:20px 24px;
+  font-size:13px;
+  color:rgba(245,242,237,0.45);
+  line-height:1.8;
+  margin-bottom:24px;
+}
+.image-note{
+  background:rgba(91,158,155,0.08);
+  border:1px solid rgba(91,158,155,0.2);
+  border-radius:6px;
+  padding:16px 20px;
+  font-size:13px;
+  color:rgba(91,158,155,0.9);
+  display:flex;gap:12px;align-items:flex-start;
+}
+.image-note .icon{flex-shrink:0;margin-top:1px;opacity:0.7}
+.text-tile-note{
+  background:rgba(245,242,237,0.04);
+  border:1px solid rgba(245,242,237,0.08);
+  border-radius:6px;
+  padding:14px 20px;
+  font-size:13px;color:rgba(245,242,237,0.45);
+}
+
+/* Image guide section */
+.img-guide{margin-top:80px}
+.img-guide h2{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:36px;
+  margin-bottom:8px;
+}
+.img-guide h2 em{font-style:italic}
+.img-file-list{margin-top:40px;display:flex;flex-direction:column;gap:16px}
+.img-file{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:20px;
+  background:rgba(245,242,237,0.03);
+  border:1px solid rgba(245,242,237,0.07);
+  border-radius:6px;
+}
+.img-fname{
+  font-size:13px;letter-spacing:0.08em;
+  color:rgba(245,242,237,0.7);margin-bottom:4px;
+  font-family:monospace;
+}
+.img-fdesc{font-size:12px;color:rgba(245,242,237,0.35);line-height:1.5}
+.img-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid rgba(245,242,237,0.1);
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+}
+</style>
+<script>
+function copyCaption(el){
+  const text=el.innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    el.style.borderColor='rgba(91,158,155,0.5)';
+    setTimeout(()=>el.style.borderColor='',1200);
+  });
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Caption Copy<br><em>&amp; Image Guide</em></h1>
+  <div class="subtitle">@ericageorgis · Instagram Launch Grid</div>
+  <div class="section-rule"></div>
+
+  <!-- T01 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">01</div>
+      <div class="post-meta">
+        <div class="post-tile">T01 · Text tile · Upload last</div>
+        <div class="post-title">Brand Logo — <em>Hero tile</em></div>
+      </div>
+    </div>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">Erica Georgis. Interior Design, Sydney.
+
+Full-scope residential design for those who understand that a home is not just where you live — it is how you live.
+
+Now taking enquiries for 2025 projects.
+Link in bio to begin.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#InteriorDesign #SydneyInteriors #LuxuryInteriors #InteriorDesigner #SydneyDesign #HomeDesign #HighEndInteriors #DesignDirector #SydneyHomes #InteriorStyling #EricaGeorgis #CreativeDirection</div>
+    <div class="text-tile-note">Text tile — no image required. Screenshot at 1080×1080px and post.</div>
+  </div>
+
+  <!-- T02 + T03 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">02</div>
+      <div class="post-meta">
+        <div class="post-tile">T02 + T03 · 2-tile panoramic · Upload T03 first, then T02</div>
+        <div class="post-title">Interior Panoramic — <em>Point Piper Residence</em></div>
+      </div>
+    </div>
+    <div class="image-note">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div>
+        Save as: <code>instagram/images/interior-wide.jpg</code><br>
+        Your wide interior-through-doors shot. T02 uses the left half, T03 uses the right half. Both reference the same file — the CSS handles the crop automatically.
+      </div>
+    </div>
+    <br>
+    <div class="field-label">Caption (use for BOTH posts — or write a 2-part series)</div>
+    <div class="caption-box" onclick="copyCaption(this)">Living without limits.
+
+The brief was simple: dissolve the boundary between inside and out, and let the harbour do the rest. Black steel frames, pale marble, and furniture chosen to disappear into the view.
+
+Point Piper, Sydney. 2025.
+Interior Design: @ericageorgis</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#SydneyInteriors #LuxuryInteriors #InteriorDesign #BlackSteel #MarbleInteriors #OpenPlan #SydneyHarbour #ResidentialDesign #PointPiper #ContemporaryDesign #EricaGeorgis</div>
+  </div>
+
+  <!-- T04 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">03</div>
+      <div class="post-meta">
+        <div class="post-tile">T04 · Image tile</div>
+        <div class="post-title">Master <em>Ensuite</em></div>
+      </div>
+    </div>
+    <div class="image-note">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div>Save as: <code>instagram/images/bathroom.jpg</code><br>The bathroom render. Crop to 1:1 centred on the freestanding bath.</div>
+    </div>
+    <br>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">A bathroom that earns its morning ritual.
+
+Ribbed glass, a sculptural freestanding bath, and the kind of chandelier that makes you pause before you turn it off. Every material chosen to age with grace.
+
+Master ensuite — in progress.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#BathroomDesign #LuxuryBathroom #InteriorDesign #FreestándingBath #SydneyInteriors #BathroomInspo #RibbedGlass #SteelFrame #BathroomRenovation #EricaGeorgis</div>
+  </div>
+
+  <!-- T05 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">04</div>
+      <div class="post-meta">
+        <div class="post-tile">T05 · Text tile (dark)</div>
+        <div class="post-title">Quote tile</div>
+      </div>
+    </div>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">"The finest spaces are felt before they are seen."
+
+This is the principle that guides every decision we make — from the first sketch to the final placement.
+
+If a room doesn't give you that feeling the moment you walk in, we haven't finished.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#DesignPhilosophy #InteriorDesign #LuxuryLiving #DesignQuote #SydneyDesigner #CreativeDirection #InteriorDesignInspo #HomeDesign #EricaGeorgis</div>
+    <div class="text-tile-note">Text tile — screenshot at 1080×1080px and post.</div>
+  </div>
+
+  <!-- T06 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">05</div>
+      <div class="post-meta">
+        <div class="post-tile">T06 · Image tile</div>
+        <div class="post-title">Sculptural <em>Stair</em></div>
+      </div>
+    </div>
+    <div class="image-note">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div>Save as: <code>instagram/images/staircase.jpg</code><br>The aerial staircase shot. Already near-square — minimal crop needed.</div>
+    </div>
+    <br>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">The stair as sculpture.
+
+Photographed from above, this helical form reads as pure geometry — white plaster wrapped around blonde oak, pinned with a black steel rail. Architecture and interior design as one continuous thought.
+
+Concept to delivery: @ericageorgis</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#StaircaseDesign #ArchitecturalDetail #InteriorArchitecture #SydneyInteriors #SculpturalDesign #HelicalStair #HomeDesign #LuxuryInteriors #InteriorDesign #EricaGeorgis</div>
+  </div>
+
+  <!-- T07 + T08 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">06</div>
+      <div class="post-meta">
+        <div class="post-tile">T07 + T08 · 2-tile panoramic · Upload T08 first, then T07</div>
+        <div class="post-title">Facade Panoramic — <em>Bellevue Hill Estate</em></div>
+      </div>
+    </div>
+    <div class="image-note">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div>Save as: <code>instagram/images/facade.jpg</code><br>The exterior facade with pagoda awnings. T07 = left half, T08 = right half. Both reference the same file.</div>
+    </div>
+    <br>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">Where the garden meets the architecture.
+
+A Federation facade restored and reimagined — black steel-framed arches, pagoda awnings, and a terrace that performs as an outdoor room. Outdoor furniture by Coco Republic, styling by EG.
+
+Bellevue Hill, Sydney. 2025.
+Interior Design &amp; Styling: @ericageorgis</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#ExteriorDesign #SydneyHomes #FederationHome #BlackSteel #ArchedWindows #OutdoorLiving #LandscapeDesign #SydneyRealEstate #HomeRestoration #BellevueHill #EricaGeorgis</div>
+  </div>
+
+  <!-- T09 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">07</div>
+      <div class="post-meta">
+        <div class="post-tile">T09 · Text tile (dark)</div>
+        <div class="post-title">Manifesto</div>
+      </div>
+    </div>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">We don't decorate rooms. We design the life that unfolds within them.
+
+At Erica Georgis, every project begins with a question: how do you want to feel when you're home?
+
+The answer becomes the brief. The brief becomes the design. The design becomes yours.
+
+Enquiries: link in bio.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#InteriorDesign #DesignManifesto #SydneyInteriors #LuxuryLiving #HomeDesign #InteriorDesigner #CreativeDirection #DesignInspiration #EricaGeorgis</div>
+    <div class="text-tile-note">Text tile — screenshot at 1080×1080px and post.</div>
+  </div>
+
+  <!-- T10 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">08</div>
+      <div class="post-meta">
+        <div class="post-tile">T10 · Image tile (material detail)</div>
+        <div class="post-title">Verde Onyx — <em>material</em></div>
+      </div>
+    </div>
+    <div class="image-note">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div>Save as: <code>instagram/images/marble.jpg</code><br>The teal green marble. Portrait image — crops beautifully to square.</div>
+    </div>
+    <br>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">Material obsession: Verde Onyx.
+
+Teal, jade, and a thousand years of geological memory. This slab is destined for a feature bathroom — a 2400×1200mm sheet, book-matched, lit from behind.
+
+It is not a surface. It is a statement.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#Marble #OnlineMarble #Verde #StoneDesign #LuxuryMaterials #InteriorMaterials #FeatureWall #BathroomDesign #SydneyInteriors #MaterialDesign #EricaGeorgis #LuxuryStone</div>
+  </div>
+
+  <!-- T11 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">09</div>
+      <div class="post-meta">
+        <div class="post-tile">T11 · Text tile</div>
+        <div class="post-title">Full Service Design</div>
+      </div>
+    </div>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">From the first pencil line to the final cushion.
+
+We offer full-scope interior design: concept, spatial planning, material specification, procurement, and delivery management. One point of contact. No brief too complex.
+
+Sydney-based. Projects Australia-wide.
+Enquiries: hello@ericageorgis.com.au</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#InteriorDesignStudio #SydneyDesigner #FullServiceDesign #LuxuryInteriors #InteriorDesign #HomeRenovation #InteriorStyling #ResidentialDesign #EricaGeorgis</div>
+    <div class="text-tile-note">Text tile — screenshot at 1080×1080px and post.</div>
+  </div>
+
+  <!-- T12 -->
+  <div class="post">
+    <div class="post-header">
+      <div class="post-num">10</div>
+      <div class="post-meta">
+        <div class="post-tile">T12 · Text tile (dark) · Upload first</div>
+        <div class="post-title">Contact — <em>Begin your project</em></div>
+      </div>
+    </div>
+    <div class="field-label">Caption</div>
+    <div class="caption-box" onclick="copyCaption(this)">Ready to begin?
+
+We are now taking enquiries for projects commencing 2025. Whether you are building from the ground up or transforming an existing home — we would love to hear from you.
+
+hello@ericageorgis.com.au
+@ericageorgis
+Link in bio.</div>
+    <div class="copy-hint">Click to copy</div>
+    <div class="field-label">Hashtags</div>
+    <div class="hashtags-box">#InteriorDesign #SydneyInteriors #LuxuryInteriors #HomeDesign #InteriorDesigner #SydneyHomes #Renovation #NewBuild #EricaGeorgis #InteriorDesignSydney</div>
+    <div class="text-tile-note">Text tile — screenshot at 1080×1080px and post.</div>
+  </div>
+
+  <!-- Image guide -->
+  <div class="img-guide">
+    <h2>Image <em>Setup Guide</em></h2>
+    <div class="subtitle" style="margin-bottom:0">Save your 5 images with these exact filenames</div>
+
+    <div class="img-file-list">
+      <div class="img-file">
+        <div class="img-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(245,242,237,0.3)" stroke-width="1">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="img-fname">instagram/images/interior-wide.jpg</div>
+          <div class="img-fdesc">Your wide interior shot through the open steel doors (Image 2). Used by T02 (left half) and T03 (right half). Minimum 2160px wide recommended for quality.</div>
+        </div>
+      </div>
+      <div class="img-file">
+        <div class="img-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(245,242,237,0.3)" stroke-width="1">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="img-fname">instagram/images/bathroom.jpg</div>
+          <div class="img-fdesc">Bathroom render with freestanding bath (Image 3). Crop to 1:1 square before saving — or let background-size:cover handle it. Centre the bath in frame.</div>
+        </div>
+      </div>
+      <div class="img-file">
+        <div class="img-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(245,242,237,0.3)" stroke-width="1">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="img-fname">instagram/images/staircase.jpg</div>
+          <div class="img-fdesc">Aerial staircase shot (Image 4). Already close to square — a centre crop works perfectly. The white/timber composition fills the tile beautifully.</div>
+        </div>
+      </div>
+      <div class="img-file">
+        <div class="img-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(245,242,237,0.3)" stroke-width="1">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="img-fname">instagram/images/facade.jpg</div>
+          <div class="img-fdesc">Exterior facade with pagoda awnings (Image 1). Used by T07 (left half) and T08 (right half). Keep it wide — the CSS splits it across 2 tiles automatically.</div>
+        </div>
+      </div>
+      <div class="img-file">
+        <div class="img-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(245,242,237,0.3)" stroke-width="1">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="img-fname">instagram/images/marble.jpg</div>
+          <div class="img-fdesc">Teal verde onyx marble close-up (Image 5). Portrait format — crops to square naturally. The background-position:center handles the square crop automatically.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
