@@ -28,6 +28,7 @@ body.has-photo .eyebrow,body.has-photo .tagline{color:#1A1A1A;text-shadow:0 0 22
 .sep{display:block;width:3px;height:3px;border-radius:50%;background:#C4A97A;flex-shrink:0}
 .add-photo{position:absolute;bottom:44px;right:44px;z-index:20;width:26px;height:26px;border:1px solid rgba(26,26,26,0.18);background:transparent;cursor:pointer;border-radius:50%;font-family:'Jost',sans-serif;font-size:15px;color:rgba(26,26,26,0.22);line-height:24px;text-align:center;-webkit-tap-highlight-color:transparent;transition:all 0.2s}
 .add-photo:active{border-color:rgba(196,169,122,0.8);color:#C4A97A}
+body.has-photo .add-photo{border-color:rgba(245,242,237,0.4);color:rgba(245,242,237,0.4)}
 </style>
 </head>
 <body>
@@ -49,7 +50,6 @@ function setImg(src){
   document.getElementById('bg').style.backgroundImage='url('+src+')';
   document.getElementById('bg').style.opacity='1';
   document.getElementById('photo-veil').style.opacity='1';
-  document.getElementById('add-photo').style.display='none';
   document.body.classList.add('has-photo');
 }
 try{var s=localStorage.getItem('eg_'+KEY);if(s)setImg(s);}catch(e){}
