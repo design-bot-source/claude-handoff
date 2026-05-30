@@ -10,33 +10,27 @@
 html,body{width:1080px;height:1080px;overflow:hidden}
 body{position:relative;overflow:hidden}
 
-/*
-  IMAGE: marble.jpg
-  Save your teal marble close-up as: instagram/images/marble.jpg
-  The image is portrait — it will fill the square perfectly.
-*/
+/* IMAGE: Save as instagram/images/marble.jpg */
 .bg{
-  position:absolute;inset:0;
+  position:absolute;inset:0;z-index:1;
   background-image:url('../images/marble.jpg');
   background-size:cover;
   background-position:center center;
   background-color:#7BAAA8;
+  filter:brightness(0.9) contrast(1.06) saturate(0.92);
 }
 
-.ph{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
-  background:linear-gradient(160deg,#7BAAA8,#5A8F8C);
+.filter{
+  position:absolute;inset:0;z-index:2;
+  background:rgba(10,8,6,0.12);
+  pointer-events:none;
 }
-.ph-frame{width:80px;height:80px;border:1px dashed rgba(250,250,248,0.3);display:flex;align-items:center;justify-content:center}
-.ph-label{font-family:'Jost',sans-serif;font-weight:200;font-size:14px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(250,250,248,0.5);text-align:center;line-height:1.8}
 
-/* Material overlay — top section */
+/* Top overlay for text legibility */
 .overlay{
-  position:absolute;
-  top:0;left:0;right:0;
-  padding:72px 72px 120px;
-  background:linear-gradient(to bottom,rgba(10,10,10,0.38) 0%,transparent 100%);
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  padding:72px 72px 130px;
+  background:linear-gradient(to bottom,rgba(6,5,4,0.45) 0%,transparent 100%);
 }
 .mat-type{
   font-family:'Jost',sans-serif;font-weight:200;
@@ -45,31 +39,20 @@ body{position:relative;overflow:hidden}
 }
 .mat-name{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-  font-size:44px;letter-spacing:0.04em;line-height:1.1;
-  color:#FAFAF8;
+  font-size:44px;letter-spacing:0.04em;line-height:1.1;color:#FAFAF8;
 }
 
-/* Bottom material code */
 .mat-code{
-  position:absolute;
-  bottom:64px;right:68px;
+  position:absolute;bottom:64px;right:68px;z-index:3;
   font-family:'Jost',sans-serif;font-weight:200;
   font-size:12px;letter-spacing:0.35em;text-transform:uppercase;
-  color:rgba(250,250,248,0.45);text-align:right;
+  color:rgba(250,250,248,0.4);text-align:right;
 }
 </style>
 </head>
 <body>
   <div class="bg"></div>
-  <div class="ph">
-    <div class="ph-frame">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(250,250,248,0.4)" stroke-width="1">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-        <circle cx="12" cy="13" r="4"/>
-      </svg>
-    </div>
-    <div class="ph-label">images/marble.jpg<br>Portrait image · crops to square beautifully</div>
-  </div>
+  <div class="filter"></div>
   <div class="overlay">
     <div class="mat-type">Material</div>
     <div class="mat-name">Verde Onyx</div>
