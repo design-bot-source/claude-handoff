@@ -2,56 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>T02 — Interior Panoramic · Left</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>02 — Interior Pano Left</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1080px;overflow:hidden}
-body{position:relative;overflow:hidden}
-
-/* IMAGE: Save as instagram/images/interior-wide.jpg — this tile shows the LEFT half */
-.bg{
-  position:absolute;inset:0;z-index:1;
-  background-image:url('../images/interior-wide.jpg');
-  background-size:200% auto;
-  background-position:0% center;
-  background-color:#EDE8E0;
-  filter:brightness(0.88) contrast(1.08) saturate(0.88);
-}
-
-/* Colour grade overlay — sits on top of image */
-.filter{
-  position:absolute;inset:0;z-index:2;
-  background:rgba(10,8,6,0.18);
-  pointer-events:none;
-}
-
-/* Caption — bottom left */
-.caption{
-  position:absolute;bottom:0;left:0;right:0;z-index:3;
-  padding:120px 72px 72px;
-  background:linear-gradient(to top,rgba(6,5,4,0.65) 0%,transparent 100%);
-}
-.cap-label{
-  font-family:'Jost',sans-serif;font-weight:200;
-  font-size:14px;letter-spacing:0.38em;text-transform:uppercase;
-  color:rgba(250,250,248,0.6);margin-bottom:14px;
-}
-.cap-title{
-  font-family:'Cormorant Garamond',serif;font-weight:300;
-  font-size:54px;letter-spacing:0.04em;line-height:1.08;
-  color:#FAFAF8;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;position:relative}
+.bg{position:absolute;inset:0;z-index:1;background:#DDD8D0 url('../images/interior-wide.jpg') left center/200% auto no-repeat;filter:brightness(0.88) contrast(1.08) saturate(0.88)}
+.filter{position:absolute;inset:0;z-index:2;background:rgba(10,8,6,0.18);pointer-events:none}
+.caption{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:120px 72px 72px;background:linear-gradient(to top,rgba(6,5,4,0.65) 0%,transparent 100%)}
+.cap-label{font-family:'Jost',sans-serif;font-weight:200;font-size:14px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(250,250,248,0.6);margin-bottom:14px}
+.cap-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;letter-spacing:0.04em;line-height:1.08;color:#FAFAF8}
 .cap-title em{font-style:italic}
+.ph{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.08)}
+.ph-btn{font-family:'Jost',sans-serif;font-weight:200;font-size:16px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.9);background:rgba(0,0,0,0.55);padding:22px 40px;border-radius:2px;text-align:center}
+.ph-btn small{display:block;font-size:11px;letter-spacing:0.2em;margin-top:8px;opacity:0.6}
 </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="filter"></div>
-  <div class="caption">
-    <div class="cap-label">Featured Project</div>
-    <div class="cap-title">Point Piper<br><em>Residence</em></div>
-  </div>
+<div class="bg" id="bg"></div>
+<div class="filter"></div>
+<div class="ph" id="ph" onclick="document.getElementById('fp').click()">
+  <div class="ph-btn">Tap to add photo<small>Interior wide shot</small></div>
+</div>
+<input type="file" id="fp" accept="image/*" style="display:none">
+<div class="caption">
+  <div class="cap-label">Featured Project</div>
+  <div class="cap-title">Point Piper<br><em>Residence</em></div>
+</div>
+<script>
+var KEY='interior';
+function setImg(src){document.getElementById('bg').style.backgroundImage='url('+src+')';document.getElementById('ph').style.display='none';}
+try{var s=localStorage.getItem('eg_'+KEY);if(s)setImg(s);}catch(e){}
+document.getElementById('fp').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var src=ev.target.result;try{localStorage.setItem('eg_'+KEY,src);}catch(e){}setImg(src);};r.readAsDataURL(f);});
+window.addEventListener('message',function(e){if(e.data&&e.data.key===KEY&&e.data.src)setImg(e.data.src);});
+!function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();
+</script>
 </body>
 </html>

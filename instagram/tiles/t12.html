@@ -2,96 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>T12 — Contact</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>12 — Contact</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1080px;overflow:hidden}
-body{
-  background:#1A1A1A;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  font-family:'Cormorant Garamond',Georgia,serif;
-  color:#F5F2ED;
-  position:relative;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:#1A1A1A}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;color:#F5F2ED;position:relative}
 .corner{position:absolute;width:24px;height:24px;border-color:rgba(245,242,237,0.15);border-style:solid}
 .corner.tl{top:52px;left:52px;border-width:1px 0 0 1px}
 .corner.tr{top:52px;right:52px;border-width:1px 1px 0 0}
 .corner.bl{bottom:52px;left:52px;border-width:0 0 1px 1px}
 .corner.br{bottom:52px;right:52px;border-width:0 1px 1px 0}
-
-.inner{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.label{
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:14px;
-  letter-spacing:0.44em;
-  text-transform:uppercase;
-  color:rgba(245,242,237,0.38);
-  margin-bottom:52px;
-}
-.cta{
-  font-weight:300;
-  font-size:104px;
-  letter-spacing:0.02em;
-  line-height:0.92;
-  color:#F5F2ED;
-}
-.cta em{
-  display:block;
-  font-style:italic;
-  font-weight:300;
-  font-size:104px;
-  letter-spacing:0.04em;
-}
-.rule{
-  width:48px;height:1px;
-  background:rgba(196,169,122,0.5);
-  margin:60px 0 52px;
-}
-.contact-info{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  align-items:center;
-}
-.contact-line{
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:18px;
-  letter-spacing:0.18em;
-  color:rgba(245,242,237,0.55);
-}
-.contact-line.handle{
-  font-size:18px;
-  letter-spacing:0.22em;
-  color:rgba(245,242,237,0.5);
-}
+.inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.label{font-family:'Jost',sans-serif;font-weight:200;font-size:14px;letter-spacing:0.44em;text-transform:uppercase;color:rgba(245,242,237,0.38);margin-bottom:52px}
+.cta{font-weight:300;font-size:104px;letter-spacing:0.02em;line-height:0.92;color:#F5F2ED}
+.cta em{display:block;font-style:italic;font-weight:300;font-size:104px;letter-spacing:0.04em}
+.rule{width:48px;height:1px;background:rgba(196,169,122,0.5);margin:60px 0 52px}
+.contact-info{display:flex;flex-direction:column;gap:16px;align-items:center}
+.contact-line{font-family:'Jost',sans-serif;font-weight:200;font-size:18px;letter-spacing:0.18em;color:rgba(245,242,237,0.55)}
+.contact-line.handle{letter-spacing:0.22em;color:rgba(245,242,237,0.5)}
 </style>
 </head>
 <body>
-  <span class="corner tl"></span>
-  <span class="corner tr"></span>
-  <span class="corner bl"></span>
-  <span class="corner br"></span>
-  <div class="inner">
-    <div class="label">Let's create</div>
-    <div class="cta">Begin<br><em>your</em><br>project.</div>
-    <div class="rule"></div>
-    <div class="contact-info">
-      <span class="contact-line">hello@ericageorgis.com.au</span>
-      <span class="contact-line handle">@ericageorgis</span>
-    </div>
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<div class="inner">
+  <div class="label">Let's create</div>
+  <div class="cta">Begin<br><em>your</em><br>project.</div>
+  <div class="rule"></div>
+  <div class="contact-info">
+    <span class="contact-line">hello@ericageorgis.com.au</span>
+    <span class="contact-line handle">@ericageorgis</span>
   </div>
+</div>
+<script>!function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();</script>
 </body>
 </html>
