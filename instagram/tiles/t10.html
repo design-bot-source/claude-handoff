@@ -15,25 +15,17 @@ html,body{width:1080px;height:1080px;overflow:hidden;position:relative}
 .mat-type{font-family:'Jost',sans-serif;font-weight:200;font-size:12px;letter-spacing:0.45em;text-transform:uppercase;color:rgba(250,250,248,0.55);margin-bottom:12px}
 .mat-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:44px;letter-spacing:0.04em;line-height:1.1;color:#FAFAF8}
 .mat-code{position:absolute;bottom:64px;right:68px;z-index:3;font-family:'Jost',sans-serif;font-weight:200;font-size:12px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(250,250,248,0.4);text-align:right}
-.ph{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.ph-btn{font-family:'Jost',sans-serif;font-weight:200;font-size:16px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.9);background:rgba(0,0,0,0.55);padding:22px 40px;border-radius:2px;text-align:center}
-.ph-btn small{display:block;font-size:11px;letter-spacing:0.2em;margin-top:8px;opacity:0.6}
 </style>
 </head>
 <body>
 <div class="bg" id="bg"></div>
 <div class="filter"></div>
-<div class="ph" id="ph" onclick="document.getElementById('fp').click()">
-  <div class="ph-btn">Tap to add photo<small>Marble / material close-up</small></div>
-</div>
-<input type="file" id="fp" accept="image/*" style="display:none">
 <div class="overlay"><div class="mat-type">Material</div><div class="mat-name">Verde Onyx</div></div>
 <div class="mat-code">Stone · Feature Surface</div>
 <script>
 var KEY='marble';
-function setImg(src){document.getElementById('bg').style.backgroundImage='url('+src+')';document.getElementById('ph').style.display='none';}
+function setImg(src){document.getElementById('bg').style.backgroundImage='url('+src+')';}
 try{var s=localStorage.getItem('eg_'+KEY);if(s)setImg(s);}catch(e){}
-document.getElementById('fp').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var src=ev.target.result;try{localStorage.setItem('eg_'+KEY,src);}catch(e){}setImg(src);};r.readAsDataURL(f);});
 window.addEventListener('message',function(e){if(e.data&&e.data.key===KEY&&e.data.src)setImg(e.data.src);});
 !function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();
 </script>
