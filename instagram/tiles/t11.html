@@ -3,45 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>11 — Services</title>
+<title>11 — About</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1080px;overflow:hidden;background:#F5F2ED}
-body{display:flex;flex-direction:column;justify-content:space-between;padding:96px 88px;font-family:'Cormorant Garamond',Georgia,serif;color:#1A1A1A;position:relative}
+body{display:flex;flex-direction:column;justify-content:flex-end;padding:96px 88px;font-family:'Cormorant Garamond',Georgia,serif;color:#1A1A1A;position:relative}
 .bg{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;opacity:0;transition:opacity 0.5s}
 .photo-veil{position:absolute;inset:0;z-index:2;background:rgba(245,242,237,0.68);pointer-events:none;opacity:0;transition:opacity 0.5s}
-.top{display:flex;flex-direction:column;position:relative;z-index:10}
-.eyebrow{font-family:'Jost',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.42em;text-transform:uppercase;color:#9B9590;margin-bottom:52px}
+.content{position:relative;z-index:10}
+.eyebrow{font-family:'Jost',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.42em;text-transform:uppercase;color:#9B9590;margin-bottom:40px}
 .h{font-weight:300;font-size:88px;letter-spacing:-0.01em;line-height:0.92;color:#1A1A1A}
 .h em{display:block;font-style:italic;font-weight:300}
-.bottom{display:flex;flex-direction:column;position:relative;z-index:10}
-.rule-h{width:100%;height:1px;background:rgba(26,26,26,0.12);margin-bottom:52px}
-.services-list{list-style:none}
-.services-list li{display:flex;align-items:baseline;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(26,26,26,0.1)}
-.services-list li:last-child{border-bottom:none}
-.svc-name{font-weight:300;font-size:36px;letter-spacing:0.03em;color:#1A1A1A}
-.svc-num{font-family:'Jost',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.2em;color:#C4A97A}
-.add-photo{position:absolute;bottom:44px;right:44px;z-index:20;width:26px;height:26px;border:1px solid rgba(26,26,26,0.18);background:transparent;cursor:pointer;border-radius:50%;font-family:'Jost',sans-serif;font-size:15px;color:rgba(26,26,26,0.22);line-height:24px;text-align:center;-webkit-tap-highlight-color:transparent;transition:all 0.2s}
+.rule{width:44px;height:1px;background:#C4A97A;margin:48px 0 36px}
+.sub{font-style:italic;font-weight:300;font-size:32px;letter-spacing:0.01em;line-height:1.4;color:rgba(26,26,26,0.52)}
+.add-photo{position:absolute;top:64px;right:72px;z-index:20;width:26px;height:26px;border:1px solid rgba(26,26,26,0.18);background:transparent;cursor:pointer;border-radius:50%;font-family:'Jost',sans-serif;font-size:15px;color:rgba(26,26,26,0.22);line-height:24px;text-align:center;-webkit-tap-highlight-color:transparent;transition:all 0.2s}
 .add-photo:active{border-color:rgba(196,169,122,0.8);color:#C4A97A}
 </style>
 </head>
 <body>
 <div class="bg" id="bg"></div>
 <div class="photo-veil" id="photo-veil"></div>
-<div class="top">
-  <div class="eyebrow">What we do</div>
-  <div class="h">Full<br><em>Service</em><br>Design</div>
-</div>
-<div class="bottom">
-  <div class="rule-h"></div>
-  <ul class="services-list">
-    <li><span class="svc-name">Concept &amp; Direction</span><span class="svc-num">01</span></li>
-    <li><span class="svc-name">Spatial Design</span><span class="svc-num">02</span></li>
-    <li><span class="svc-name">Procurement</span><span class="svc-num">03</span></li>
-    <li><span class="svc-name">Project Delivery</span><span class="svc-num">04</span></li>
-  </ul>
+<div class="content">
+  <div class="eyebrow">Interior Design</div>
+  <div class="h">Sydney.<br><em>Interior</em><br>designer.</div>
+  <div class="rule"></div>
+  <div class="sub">Creating spaces that feel inevitable.</div>
 </div>
 <div class="add-photo" id="add-photo" onclick="document.getElementById('fp').click()">+</div>
 <input type="file" id="fp" accept="image/*" style="display:none">
