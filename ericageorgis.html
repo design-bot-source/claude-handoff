@@ -1,0 +1,348 @@
+<!DOCTYPE html><!-- v2 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ericageorgis — Post Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0C0C0C;color:#F5F2ED;font-family:'Jost',sans-serif;font-weight:200;min-height:100vh;padding-bottom:60px}
+a{color:inherit;text-decoration:none}
+
+/* ── HEADER ── */
+.hd{padding:40px 24px 28px;border-bottom:1px solid rgba(245,242,237,0.07)}
+.hd-handle{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:28px;letter-spacing:0.04em;color:#F5F2ED;margin-bottom:4px}
+.hd-sub{font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(245,242,237,0.3)}
+
+/* ── SECTION ── */
+.sec{padding:32px 24px 0}
+.sec-label{font-size:11px;letter-spacing:0.42em;text-transform:uppercase;color:#C4A97A;margin-bottom:20px}
+
+/* ── PHOTO SLOTS ── */
+.slots{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.slots::-webkit-scrollbar{display:none}
+.slot{flex-shrink:0;width:100px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.slot-img{
+  width:100px;height:100px;
+  background:#1A1A1A;border:1px dashed rgba(245,242,237,0.15);
+  border-radius:4px;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  background-size:cover;background-position:center;
+  margin-bottom:8px;transition:border-color 0.2s;
+}
+.slot.loaded .slot-img{border-style:solid;border-color:rgba(196,169,122,0.4)}
+.slot-icon{opacity:0.3;transition:opacity 0.2s}
+.slot.loaded .slot-icon{display:none}
+.slot-name{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(245,242,237,0.4);text-align:center}
+.slot.loaded .slot-name{color:#C4A97A}
+
+/* ── GRID PREVIEW ── */
+.preview-wrap{padding:28px 24px 0}
+.phone-shell{
+  width:280px;margin:0 auto;
+  background:#111;border-radius:32px;padding:10px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.06);
+}
+.phone-screen{background:#FAFAF8;border-radius:24px;overflow:hidden}
+.ig-top{padding:10px 12px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,0.08)}
+.ig-top span{font-size:11px;font-weight:400;color:#0A0A0A;letter-spacing:-0.01em}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#DBDBDB}
+.thumb{
+  width:88px;height:88px;overflow:hidden;position:relative;cursor:pointer;
+  background:#EBEBEA;
+}
+.thumb iframe{
+  width:1080px;height:1080px;
+  transform:scale(0.08148);transform-origin:top left;
+  border:none;pointer-events:none;
+}
+.thumb:hover::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.2)}
+
+/* ── POSTS LIST ── */
+.posts{display:flex;flex-direction:column;gap:0;margin-top:32px}
+.post-item{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 24px;border-bottom:1px solid rgba(245,242,237,0.06);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.post-item:active{background:rgba(245,242,237,0.03)}
+.post-num{
+  width:28px;height:28px;border:1px solid rgba(245,242,237,0.15);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:rgba(245,242,237,0.4);flex-shrink:0;
+}
+.post-info{flex:1}
+.post-title{font-size:15px;font-weight:300;color:#F5F2ED;margin-bottom:2px}
+.post-desc{font-size:11px;letter-spacing:0.15em;color:rgba(245,242,237,0.3);text-transform:uppercase}
+.post-arrow{color:rgba(245,242,237,0.2);font-size:18px;flex-shrink:0}
+.post-item.needs-photo .post-num{border-color:rgba(196,169,122,0.3);color:#C4A97A}
+.post-item.needs-photo .post-desc{color:#C4A97A}
+
+/* ── INSTRUCTIONS ── */
+.instructions{margin:28px 24px 0;padding:20px;background:rgba(245,242,237,0.04);border:1px solid rgba(245,242,237,0.08);border-radius:6px}
+.inst-title{font-size:11px;letter-spacing:0.38em;text-transform:uppercase;color:#C4A97A;margin-bottom:14px}
+.inst-step{font-size:13px;color:rgba(245,242,237,0.6);line-height:1.7;padding-left:2px}
+.inst-step + .inst-step{margin-top:6px}
+.inst-note{font-size:12px;color:rgba(245,242,237,0.3);margin-top:14px;line-height:1.6;font-style:italic}
+
+/* ── UPLOAD ORDER ── */
+.order-list{margin-top:28px;padding:0 24px}
+.order-label{font-size:11px;letter-spacing:0.42em;text-transform:uppercase;color:#C4A97A;margin-bottom:16px}
+.order-row{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,242,237,0.05);font-size:13px}
+.order-n{color:rgba(196,169,122,0.7);width:20px;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px}
+.order-t{color:rgba(245,242,237,0.7)}
+.order-note{color:rgba(245,242,237,0.28);font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-handle">Erica Georgis</div>
+  <div class="hd-sub">Instagram Post Studio · 12 posts</div>
+</div>
+
+<!-- STEP 1: UPLOAD PHOTOS -->
+<div class="sec">
+  <div class="sec-label">Step 1 — Your 5 photos</div>
+  <div class="slots">
+
+    <div class="slot" id="slot-facade" onclick="pickImg('facade')">
+      <div class="slot-img" id="prev-facade">
+        <svg class="slot-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div class="slot-name">Facade</div>
+    </div>
+
+    <div class="slot" id="slot-interior" onclick="pickImg('interior')">
+      <div class="slot-img" id="prev-interior">
+        <svg class="slot-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div class="slot-name">Interior</div>
+    </div>
+
+    <div class="slot" id="slot-bathroom" onclick="pickImg('bathroom')">
+      <div class="slot-img" id="prev-bathroom">
+        <svg class="slot-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div class="slot-name">Bathroom</div>
+    </div>
+
+    <div class="slot" id="slot-staircase" onclick="pickImg('staircase')">
+      <div class="slot-img" id="prev-staircase">
+        <svg class="slot-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div class="slot-name">Staircase</div>
+    </div>
+
+    <div class="slot" id="slot-marble" onclick="pickImg('marble')">
+      <div class="slot-img" id="prev-marble">
+        <svg class="slot-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <div class="slot-name">Marble</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STEP 2: GRID PREVIEW -->
+<div class="preview-wrap">
+  <div class="sec-label" style="margin-bottom:16px">Step 2 — Preview your grid</div>
+  <div class="phone-shell">
+    <div class="phone-screen">
+      <div class="ig-top">
+        <span style="font-weight:600">ericageorgis</span>
+        <span>&#9776;</span>
+      </div>
+      <div class="ig-grid">
+        <div class="thumb" title="Logo" onclick="openTile('post01')"><iframe id="f01" src="post01.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Interior pano L" onclick="openTile('post02')"><iframe id="f02" src="post02.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Interior pano R" onclick="openTile('post03')"><iframe id="f03" src="post03.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Bathroom" onclick="openTile('post04')"><iframe id="f04" src="post04.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Quote" onclick="openTile('post05')"><iframe id="f05" src="post05.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Staircase" onclick="openTile('post06')"><iframe id="f06" src="post06.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Facade pano L" onclick="openTile('post07')"><iframe id="f07" src="post07.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Facade pano R" onclick="openTile('post08')"><iframe id="f08" src="post08.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Manifesto" onclick="openTile('post09')"><iframe id="f09" src="post09.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Marble" onclick="openTile('post10')"><iframe id="f10" src="post10.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="About" onclick="openTile('post11')"><iframe id="f11" src="post11.html" loading="lazy"></iframe></div>
+        <div class="thumb" title="Contact" onclick="openTile('post12')"><iframe id="f12" src="post12.html" loading="lazy"></iframe></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// Force fresh iframe loads bypassing CDN cache
+(function(){
+  var ts = Date.now();
+  document.querySelectorAll('.ig-grid iframe').forEach(function(f){
+    f.src = f.getAttribute('src').split('?')[0] + '?t=' + ts;
+  });
+})();
+</script>
+
+<!-- STEP 3: SCREENSHOT EACH TILE -->
+<div class="sec" style="margin-top:28px">
+  <div class="sec-label">Step 3 — Open each tile &amp; screenshot</div>
+</div>
+<div class="posts">
+  <div class="post-item" onclick="openTile('post01')">
+    <div class="post-num">01</div>
+    <div class="post-info"><div class="post-title">Brand Logo</div><div class="post-desc">Text tile · ready now</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post02')">
+    <div class="post-num">02</div>
+    <div class="post-info"><div class="post-title">Interior Panoramic — Left</div><div class="post-desc">Uses: interior photo</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post03')">
+    <div class="post-num">03</div>
+    <div class="post-info"><div class="post-title">Interior Panoramic — Right</div><div class="post-desc">Uses: interior photo (same)</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post04')">
+    <div class="post-num">04</div>
+    <div class="post-info"><div class="post-title">Bathroom</div><div class="post-desc">Uses: bathroom photo</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item" onclick="openTile('post05')">
+    <div class="post-num">05</div>
+    <div class="post-info"><div class="post-title">Quote — "A space becomes perfect"</div><div class="post-desc">Text tile · ready now</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post06')">
+    <div class="post-num">06</div>
+    <div class="post-info"><div class="post-title">Staircase</div><div class="post-desc">Uses: staircase photo</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post07')">
+    <div class="post-num">07</div>
+    <div class="post-info"><div class="post-title">Facade Panoramic — Left</div><div class="post-desc">Uses: facade photo</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post08')">
+    <div class="post-num">08</div>
+    <div class="post-info"><div class="post-title">Facade Panoramic — Right</div><div class="post-desc">Uses: facade photo (same)</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item" onclick="openTile('post09')">
+    <div class="post-num">09</div>
+    <div class="post-info"><div class="post-title">Manifesto — "Good design is felt"</div><div class="post-desc">Text tile · ready now</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item needs-photo" onclick="openTile('post10')">
+    <div class="post-num">10</div>
+    <div class="post-info"><div class="post-title">Verde Onyx Marble</div><div class="post-desc">Uses: marble photo</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item" onclick="openTile('post11')">
+    <div class="post-num">11</div>
+    <div class="post-info"><div class="post-title">Space — "Space is not empty"</div><div class="post-desc">Text tile · ready now</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+  <div class="post-item" onclick="openTile('post12')">
+    <div class="post-num">12</div>
+    <div class="post-info"><div class="post-title">Contact — "Let's make something beautiful"</div><div class="post-desc">Text tile · ready now</div></div>
+    <div class="post-arrow">›</div>
+  </div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="instructions">
+  <div class="inst-title">How to screenshot each tile</div>
+  <div class="inst-step">1. Tap any tile above to open it full screen</div>
+  <div class="inst-step">2. For image tiles: tap the tile to select your photo from camera roll</div>
+  <div class="inst-step">3. Take a screenshot (power + volume up on iPhone)</div>
+  <div class="inst-step">4. Crop to the square in Photos app</div>
+  <div class="inst-step">5. Upload to Instagram from your camera roll</div>
+  <div class="inst-note">For panoramic pairs (02+03, 07+08) select the same wide photo in both tiles. Upload the right tile first, then the left — this creates the seamless 2-tile spread in your grid.</div>
+</div>
+
+<!-- UPLOAD ORDER -->
+<div class="order-list">
+  <div class="order-label">Instagram upload order (post 12 first)</div>
+  <div class="order-row"><span class="order-n">12</span><span class="order-t">Contact</span><span class="order-note">post first → lands bottom-right</span></div>
+  <div class="order-row"><span class="order-n">11</span><span class="order-t">Services</span></div>
+  <div class="order-row"><span class="order-n">10</span><span class="order-t">Marble</span></div>
+  <div class="order-row"><span class="order-n">9</span><span class="order-t">Manifesto</span></div>
+  <div class="order-row"><span class="order-n">8</span><span class="order-t">Facade — RIGHT half</span></div>
+  <div class="order-row"><span class="order-n">7</span><span class="order-t">Facade — LEFT half</span><span class="order-note">immediately after 8</span></div>
+  <div class="order-row"><span class="order-n">6</span><span class="order-t">Staircase</span></div>
+  <div class="order-row"><span class="order-n">5</span><span class="order-t">Quote</span></div>
+  <div class="order-row"><span class="order-n">4</span><span class="order-t">Bathroom</span></div>
+  <div class="order-row"><span class="order-n">3</span><span class="order-t">Interior — RIGHT half</span></div>
+  <div class="order-row"><span class="order-n">2</span><span class="order-t">Interior — LEFT half</span><span class="order-note">immediately after 3</span></div>
+  <div class="order-row"><span class="order-n">1</span><span class="order-t">Logo</span><span class="order-note">post last → lands top-left</span></div>
+</div>
+
+<script>
+var imgs = {};
+var keys = ['facade','interior','bathroom','staircase','marble'];
+var tileKeys = {t02:'interior',t03:'interior',t04:'bathroom',t06:'staircase',t07:'facade',t08:'facade',t10:'marble'};
+
+// Load saved images
+keys.forEach(function(k){
+  try {
+    var s = localStorage.getItem('eg_'+k);
+    if(s){ imgs[k]=s; applySlot(k,s); }
+  } catch(e){}
+});
+
+function applySlot(key, src){
+  var el = document.getElementById('prev-'+key);
+  if(el){ el.style.backgroundImage='url('+src+')'; el.style.backgroundSize='cover'; }
+  var slot = document.getElementById('slot-'+key);
+  if(slot) slot.classList.add('loaded');
+}
+
+function pickImg(key){
+  var inp = document.createElement('input');
+  inp.type='file'; inp.accept='image/*';
+  inp.onchange=function(e){
+    var f=e.target.files[0]; if(!f) return;
+    var r=new FileReader();
+    r.onload=function(ev){
+      var src=ev.target.result;
+      imgs[key]=src;
+      applySlot(key,src);
+      try{ localStorage.setItem('eg_'+key,src); }catch(e){}
+      broadcastToIframes(key,src);
+    };
+    r.readAsDataURL(f);
+  };
+  inp.click();
+}
+
+function broadcastToIframes(key, src){
+  document.querySelectorAll('iframe').forEach(function(fr){
+    try{ fr.contentWindow.postMessage({key:key,src:src},'*'); }catch(e){}
+  });
+}
+
+// When iframes load, send them any already-stored images
+document.querySelectorAll('iframe').forEach(function(fr){
+  fr.addEventListener('load',function(){
+    Object.keys(imgs).forEach(function(k){
+      try{ fr.contentWindow.postMessage({key:k,src:imgs[k]},'*'); }catch(e){}
+    });
+  });
+});
+
+function openTile(id){
+  window.open(id+'.html','_blank');
+}
+</script>
+</body>
+</html>
