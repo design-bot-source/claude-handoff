@@ -2,115 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>T01 — Brand</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>01 — Brand</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1080px;overflow:hidden}
-body{
-  background:#F5F2ED;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  font-family:'Cormorant Garamond',Georgia,serif;
-  color:#1A1A1A;
-  position:relative;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:#F5F2ED}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;color:#1A1A1A;position:relative}
 .corner{position:absolute;width:28px;height:28px;border-color:#C8C4BE;border-style:solid}
 .corner.tl{top:52px;left:52px;border-width:1px 0 0 1px}
 .corner.tr{top:52px;right:52px;border-width:1px 1px 0 0}
 .corner.bl{bottom:52px;left:52px;border-width:0 0 1px 1px}
 .corner.br{bottom:52px;right:52px;border-width:0 1px 1px 0}
-.inner{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.eyebrow{
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:18px;
-  letter-spacing:0.42em;
-  text-transform:uppercase;
-  color:#9B9590;
-  margin-bottom:56px;
-}
-.rule{
-  width:52px;
-  height:1px;
-  background:#C4A97A;
-  margin-bottom:56px;
-}
-.name-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0;
-}
-.name-first{
-  font-weight:300;
-  font-size:128px;
-  letter-spacing:0.14em;
-  line-height:0.95;
-  color:#1A1A1A;
-}
-.name-last{
-  font-style:italic;
-  font-weight:300;
-  font-size:128px;
-  letter-spacing:0.07em;
-  line-height:1.0;
-  color:#1A1A1A;
-}
-.rule-bottom{
-  width:52px;
-  height:1px;
-  background:#C4A97A;
-  margin-top:56px;
-  margin-bottom:48px;
-}
-.tagline{
-  font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:16px;
-  letter-spacing:0.38em;
-  text-transform:uppercase;
-  color:#9B9590;
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-.sep{
-  display:block;
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:#C4A97A;
-  flex-shrink:0;
-}
+.inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.eyebrow{font-family:'Jost',sans-serif;font-weight:200;font-size:18px;letter-spacing:0.42em;text-transform:uppercase;color:#9B9590;margin-bottom:56px}
+.rule{width:52px;height:1px;background:#C4A97A;margin-bottom:56px}
+.name-first{font-weight:300;font-size:128px;letter-spacing:0.14em;line-height:0.95;color:#1A1A1A}
+.name-last{font-style:italic;font-weight:300;font-size:128px;letter-spacing:0.07em;line-height:1.0;color:#1A1A1A}
+.rule-bottom{width:52px;height:1px;background:#C4A97A;margin-top:56px;margin-bottom:48px}
+.tagline{font-family:'Jost',sans-serif;font-weight:200;font-size:16px;letter-spacing:0.38em;text-transform:uppercase;color:#9B9590;display:flex;align-items:center;gap:18px}
+.sep{display:block;width:3px;height:3px;border-radius:50%;background:#C4A97A;flex-shrink:0}
 </style>
 </head>
 <body>
-  <span class="corner tl"></span>
-  <span class="corner tr"></span>
-  <span class="corner bl"></span>
-  <span class="corner br"></span>
-  <div class="inner">
-    <div class="eyebrow">Creative Direction</div>
-    <div class="rule"></div>
-    <div class="name-wrap">
-      <span class="name-first">ERICA</span>
-      <span class="name-last">Georgis</span>
-    </div>
-    <div class="rule-bottom"></div>
-    <div class="tagline">
-      Interior Design
-      <span class="sep"></span>
-      Sydney
-    </div>
-  </div>
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<div class="inner">
+  <div class="eyebrow">Creative Direction</div>
+  <div class="rule"></div>
+  <div><span class="name-first" style="display:block">ERICA</span><span class="name-last" style="display:block">Georgis</span></div>
+  <div class="rule-bottom"></div>
+  <div class="tagline">Interior Design<span class="sep"></span>Sydney</div>
+</div>
+<script>!function(){var s=Math.min(window.innerWidth,window.innerHeight)/1080;document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='top left';document.documentElement.style.overflow='hidden';var v=Math.min(window.innerWidth,window.innerHeight);document.documentElement.style.width=v+'px';document.documentElement.style.height=v+'px';}();</script>
 </body>
 </html>
